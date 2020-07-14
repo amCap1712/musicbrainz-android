@@ -1,4 +1,4 @@
-package org.metabrainz.mobile.presentation.features.SplashScreen
+package org.metabrainz.mobile.presentation.features.SplashActivity
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,20 +10,23 @@ import android.view.WindowManager
 import org.metabrainz.mobile.R
 import org.metabrainz.mobile.presentation.features.dashboard.DashboardActivity
 
-class SplashScreen: AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-
-        super.onCreate(savedInstanceState, persistentState)
-        setContentView(R.layout.splashscreen)
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         //hiding title bar of this activity
         window.requestFeature(Window.FEATURE_NO_TITLE)
         //making this activity full screen
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        setContentView(R.layout.activity_splash)
 
-        Handler().postDelayed(Runnable {
-            startActivity(Intent(this@SplashScreen,DashboardActivity::class.java))
-        },5000)
+        //4second splash time
+        Handler().postDelayed({
+            //start main activity
+            startActivity(Intent(this@SplashActivity, DashboardActivity::class.java))
+            //finish this activity
+            finish()
+        },4000)
+
     }
 }
