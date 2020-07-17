@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import org.metabrainz.mobile.R
+import org.metabrainz.mobile.presentation.features.KotlinDashboard.KotlinDashboardActivity
 import org.metabrainz.mobile.presentation.features.dashboard.DashboardActivity
 
 class SplashActivity : AppCompatActivity() {
@@ -34,10 +35,10 @@ class SplashActivity : AppCompatActivity() {
         //4second splash time
         Handler().postDelayed({
             //start main activity
-            startActivity(Intent(this@SplashActivity, DashboardActivity::class.java))
+            startActivity(Intent(this@SplashActivity, KotlinDashboardActivity::class.java))
             //finish this activity
             finish()
-        },4000)
+        },3000)
 
     }
 }

@@ -51,6 +51,7 @@
         <activity
             android:name=".presentation.features.release_group.ReleaseGroupActivity"
             android:theme="@style/AppThemeCustomActionBar" />
+
         <activity android:name=".presentation.features.SplashActivity.SplashActivity"
                   android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -62,6 +63,9 @@
                         <meta-data
                             android:name="android.app.searchable"
                             android:resource="@xml/searchable" />
+        </activity>
+        <activity android:name=".presentation.features.KotlinDashboard.KotlinDashboardActivity">
+
         </activity>
 <!--        <activity-->
 <!--            android:name=".presentation.features.dashboard.DashboardActivity"-->
