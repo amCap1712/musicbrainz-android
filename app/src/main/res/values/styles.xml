@@ -14,7 +14,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar"></style>
+
+    <style name="AppThemeDashboard" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
 </resources>

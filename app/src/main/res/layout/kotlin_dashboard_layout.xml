@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="300dp"
+        android:background="@drawable/geometricback"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="@drawable/geometricback"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:contentScrim="?attr/colorAccent"
                 app:expandedTitleMarginEnd="48dp"
@@ -38,17 +36,14 @@
             android:layout_height="match_parent"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
+            <LinearLayout
                 android:id="@+id/ll"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#fcfcfc"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="10dp"
-                tools:context="com.example.MainActivity">
+                android:padding="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -350,5 +345,4 @@
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-</layout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
