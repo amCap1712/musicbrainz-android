@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -23,11 +24,11 @@ import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
 import org.metabrainz.mobile.R;
 import org.metabrainz.mobile.data.sources.QueryUtils;
+import org.metabrainz.mobile.data.sources.api.entities.EntityUtils;
 import org.metabrainz.mobile.data.sources.api.entities.Media;
 import org.metabrainz.mobile.data.sources.api.entities.Track;
 import org.metabrainz.mobile.data.sources.api.entities.mbentity.Recording;
 import org.metabrainz.mobile.data.sources.api.entities.mbentity.Release;
-import org.metabrainz.mobile.presentation.MusicBrainzActivity;
 import org.metabrainz.mobile.util.ComparisionResult;
 import org.metabrainz.mobile.util.Log;
 import org.metabrainz.mobile.util.Metadata;
@@ -43,7 +44,7 @@ import static org.metabrainz.mobile.App.AUDIO_FILE_REQUEST_CODE;
 import static org.metabrainz.mobile.App.STORAGE_PERMISSION_REQUEST_CODE;
 import static org.metabrainz.mobile.presentation.features.tagger.FileSelectActivity.EXTRA_FILE_PATH;
 
-public class TaggerActivity extends MusicBrainzActivity {
+public class TaggerActivity extends AppCompatActivity {
 
     private TaggerViewModel viewModel;
     private RecyclerView recyclerView;
@@ -227,7 +228,7 @@ public class TaggerActivity extends MusicBrainzActivity {
             changes.add(createChange(tag, FieldKey.MUSICBRAINZ_TRACK_ID, track.getRecording().getMbid()));
             changes.add(createChange(tag, FieldKey.MUSICBRAINZ_RELEASE_TRACK_ID, track.getRecording().getMbid()));
 
-            String artist = track.getRecording().getDisplayArtist();
+            String artist = EntityUtils.getDisplayArtist(track.getRecording().getArtistCredits());
             changes.add(createChange(tag, FieldKey.ARTIST, artist));
             changes.add(createChange(tag, FieldKey.ARTIST_SORT, artist));
             changes.add(createChange(tag, FieldKey.ALBUM_ARTIST, artist));

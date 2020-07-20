@@ -8,12 +8,18 @@ android {
         applicationId "org.metabrainz.android"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 28
+        versionCode 33
 
-        versionName "2.5"
+        versionName "3.1"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -28,23 +34,19 @@ android {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
-    viewBinding {
-        enabled = true
-    }
-    dataBinding {
-        enabled = true
-    }
+
     ndkVersion '21.2.6472646'
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.2.0-alpha03'
-    implementation 'android.arch.navigation:navigation-fragment:1.0.0'
-    implementation 'android.arch.navigation:navigation-ui:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-runtime:2.3.0-alpha01'
+    implementation 'androidx.appcompat:appcompat:1.3.0-alpha01'
+    implementation "androidx.navigation:navigation-fragment:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui:$navigationVersion"
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.3.0-alpha05'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha05'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.3.0-alpha05'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-common-java8:2.3.0-alpha03'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.3.0-alpha05'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     //webservice Setup
@@ -53,8 +55,6 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.3.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.3.1'
-    implementation 'androidx.browser:browser:1.0.0'
-    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
 
     //Image downloading and Caching library
     implementation 'com.squareup.picasso:picasso:2.71828'
@@ -64,8 +64,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
     //Fragment Setup For Kotlin
-    implementation "android.arch.navigation:navigation-fragment-ktx:$navigationVersion"
-    implementation "android.arch.navigation:navigation-ui-ktx:$navigationVersion"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.0.0-rc02'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.0.0-rc02'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
 
     //Test Setup
@@ -79,13 +79,17 @@ dependencies {
     implementation 'info.debatty:java-string-similarity:1.2.1'
 
     //Design Setup
-    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha01'
+    implementation 'androidx.browser:browser:1.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha04'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta8'
     implementation "com.google.android.material:material:$supportlibVersion"
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.17'
-    implementation 'androidx.preference:preference:1.1.0'
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    implementation 'androidx.preference:preference:1.1.1'
     implementation 'me.dm7.barcodescanner:zbar:1.9.13'
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    implementation "androidx.paging:paging-runtime:3.0.0-alpha02"
 }

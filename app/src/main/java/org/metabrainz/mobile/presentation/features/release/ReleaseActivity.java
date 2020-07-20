@@ -1,14 +1,17 @@
 package org.metabrainz.mobile.presentation.features.release;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import org.metabrainz.mobile.App;
 import org.metabrainz.mobile.data.sources.Constants;
 import org.metabrainz.mobile.data.sources.api.entities.mbentity.Release;
 import org.metabrainz.mobile.databinding.ActivityReleaseBinding;
 import org.metabrainz.mobile.presentation.MusicBrainzActivity;
+import org.metabrainz.mobile.presentation.features.links.LinksViewModel;
 import org.metabrainz.mobile.presentation.features.userdata.UserViewModel;
 
 import java.util.Objects;
@@ -24,6 +27,7 @@ public class ReleaseActivity extends MusicBrainzActivity {
     private ActivityReleaseBinding binding;
 
     private ReleaseViewModel releaseViewModel;
+    private LinksViewModel linksViewModel;
     private UserViewModel userViewModel;
 
     private String mbid;
@@ -36,6 +40,7 @@ public class ReleaseActivity extends MusicBrainzActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         releaseViewModel = new ViewModelProvider(this).get(ReleaseViewModel.class);
+        linksViewModel = new ViewModelProvider(this).get(LinksViewModel.class);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         mbid = getIntent().getStringExtra(Constants.MBID);
@@ -48,6 +53,7 @@ public class ReleaseActivity extends MusicBrainzActivity {
         if (release != null) {
             Objects.requireNonNull(getSupportActionBar()).setTitle(release.getTitle());
             userViewModel.setUserData(release);
+            linksViewModel.setData(release.getRelations());
         }
     }
 
@@ -58,5 +64,10 @@ public class ReleaseActivity extends MusicBrainzActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected Uri getBrowserURI() {
+        return Uri.parse(App.WEBSITE_BASE_URL + "release/" + mbid);
     }
 }

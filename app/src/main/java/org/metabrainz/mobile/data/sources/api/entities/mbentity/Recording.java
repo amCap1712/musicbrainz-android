@@ -3,20 +3,39 @@ package org.metabrainz.mobile.data.sources.api.entities.mbentity;
 import com.google.gson.annotations.SerializedName;
 
 import org.metabrainz.mobile.data.sources.api.entities.ArtistCredit;
+import org.metabrainz.mobile.data.sources.api.entities.Link;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.List;
 
 public class Recording extends MBEntity {
     private String title;
     private long length;
 
     @SerializedName("artist-credit")
-    private ArrayList<ArtistCredit> artistCredits = new ArrayList<>();
-    private ArrayList<Release> releases = new ArrayList<>();
+    private final List<ArtistCredit> artistCredits = new ArrayList<>();
     @SerializedName("track-count")
     private int trackCount;
     private int score;
+
+    private final List<Link> relations = new ArrayList<>();
+    private final List<Release> releases = new ArrayList<>();
+
+    public List<Release> getReleases() {
+        return releases;
+    }
+
+    public void setReleases(List<Release> releases) {
+        this.releases.addAll(releases);
+    }
+
+    public List<Link> getRelations() {
+        return relations;
+    }
+
+    public void setRelations(List<Link> relations) {
+        this.relations.addAll(relations);
+    }
 
     public int getScore() {
         return score;
@@ -42,20 +61,12 @@ public class Recording extends MBEntity {
         this.length = length;
     }
 
-    public ArrayList<ArtistCredit> getArtistCredits() {
+    public List<ArtistCredit> getArtistCredits() {
         return artistCredits;
     }
 
-    public void setArtistCredits(ArrayList<ArtistCredit> artistCredits) {
-        this.artistCredits = artistCredits;
-    }
-
-    public ArrayList<Release> getReleases() {
-        return releases;
-    }
-
-    public void setReleases(ArrayList<Release> releases) {
-        this.releases = releases;
+    public void setArtistCredits(List<ArtistCredit> artistCredits) {
+        this.artistCredits.addAll(artistCredits);
     }
 
     public int getTrackCount() {
@@ -64,24 +75,6 @@ public class Recording extends MBEntity {
 
     public void setTrackCount(int trackCount) {
         this.trackCount = trackCount;
-    }
-
-    public String getDisplayArtist() {
-        StringBuilder builder = new StringBuilder();
-        Iterator<ArtistCredit> iterator = artistCredits.iterator();
-        while (iterator.hasNext()) {
-            ArtistCredit credit = iterator.next();
-            String name = "";
-            if (credit.getName() != null && !credit.getName().isEmpty())
-                name = credit.getName();
-            else if (credit.getArtist() != null && credit.getArtist().getName() != null
-                    && !credit.getArtist().getName().isEmpty())
-                name = credit.getArtist().getName();
-            builder.append(name);
-            if (iterator.hasNext())
-                builder.append(credit.getJoinphrase());
-        }
-        return builder.toString();
     }
 
     public String getDuration() {

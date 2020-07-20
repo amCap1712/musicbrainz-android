@@ -31,16 +31,16 @@ import io.reactivex.schedulers.Schedulers;
 
 import static android.view.View.GONE;
 
-class ReleaseListAdapter extends RecyclerView.Adapter<ReleaseListAdapter.ReleaseItemViewHolder> {
+public class ReleaseListAdapter extends RecyclerView.Adapter<ReleaseListAdapter.ReleaseItemViewHolder> {
 
     private final List<Release> releaseList;
-    private final CoverArtViewModel viewModel;
+    private final ReleaseListViewModel viewModel;
     private final CompositeDisposable compositeDisposable;
 
     public ReleaseListAdapter(Context context, List<Release> releaseList) {
         this.releaseList = releaseList;
         // Load the ViewModel to fetch cover art for each release item
-        viewModel = new ViewModelProvider((FragmentActivity) context).get(CoverArtViewModel.class);
+        viewModel = new ViewModelProvider((FragmentActivity) context).get(ReleaseListViewModel.class);
         compositeDisposable = new CompositeDisposable();
     }
 
