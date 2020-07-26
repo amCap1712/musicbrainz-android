@@ -31,7 +31,7 @@ public class ArtistViewModel extends LookupViewModel {
         return liveData;
     }
 
-    LiveData<WikiSummary> getWikiData() {
+    public LiveData<WikiSummary> getWikiData() {
         return wikiSummary;
     }
 
