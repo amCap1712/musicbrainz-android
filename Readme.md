@@ -1,11 +1,16 @@
 # MusicBrainz Android app
 
-This project was part of  Google Summer of Code 2019.
-
 The official android app for MusicBrainz. MusicBrainz for Android lets users search metadata all of the the metadata available on MusicBrainz. Users can scan barcode to search albums. Registered users can view, edit and modify their collections. Users can also tag their audio files.
+
+# Developers
+MusicBrainz for Android was first created in 2010-11 as a part of GSoC by Jamie McDonald. The project went stagnant for a few years.
+
+In GSoC 2019, development on the project started again and was later taken up as another GSoC project by amCap1712.
+
+In GSoC 2020,combined effort of SomalRudra & amCap1712 revamped the app design, improved overall infrastructure, integrated testing,Continous Integration & has been successful to implement the key feature:Tagger
+
 # What's next
-The last commit for Google Summer of Code 2019 was ac470a8 However there is more work to be done after GSoC, like:
-* The tagger is still in initial stages. The app needs to achieve complete usability with the desktop version of Picard. Many audio formats are not suppored yet. There is no support for Cover Art. In the supported formats, not all tags are currently be allowed. At many points, the JAudioTagger library being used underneath to interact with tags limits the usability. Either work has to be done at developing at a new library for JAVA which fulfills the needs or otherwise a suitable C/C++ can be used with the help of Andrid NDK and JNI.
-* At this moment, users are unable to modify or create collections. This needs to be fixed.
-* Also, the app is lacking a good and user friendly UI/UX.
-* It would also be great if the codebase was moved to Kotlin to make it more maintainable.
+
+* The tagger is still in initial stages. The app needs to achieve complete usability with the desktop version of Picard. This requires that we support all the tags as Picard.
+* Moving a larger part of the codebase to Kotlin.
+* Incorporate functionality from more *Brainz.

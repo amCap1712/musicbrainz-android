@@ -2,41 +2,130 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/app_bg"
-    android:orientation="vertical">
-<!--    android:layout_gravity="center"-->
-<!--    android:gravity="center"-->
+    android:background="@color/app_bg">
+
+    <FrameLayout
+        android:id="@+id/search_fragment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:background="@color/app_bg">
+
+        <fragment
+            android:id="@+id/search_fragment"
+            android:name="org.metabrainz.mobile.presentation.features.dashboard.SearchFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
 
     <TextView
-        android:id="@+id/no_result"
+        android:id="@+id/add_instruc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_fragment_layout"
         android:textColor="@color/white"
+        android:layout_marginTop="50dp"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/instruction_to_add"/>
+
+    <LinearLayout
+        android:id="@+id/add_artist_release"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/no_results"
-        android:textAlignment="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:gravity="center_horizontal" />
-    <ProgressBar
-        android:id="@+id/progress_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_below="@id/add_instruc"
         android:layout_marginTop="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_gravity="center" />
+        android:orientation="horizontal">
 
+        <Button
+            android:id="@+id/add_artist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/artistadd"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:layout_weight="0.5"
+            android:textAllCaps="false"
+            />
+        <Button
+            android:id="@+id/add_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/releaseadd"
+            android:gravity="center"
+            android:layout_weight="0.5"
+            android:textAllCaps="false"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            />
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/add_event_releasegroup"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_artist_release"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
 
-<!--    <fragment-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/fab_icons"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:name="org.metabrainz.mobile.presentation.features.userdata.FAButility"></fragment>-->
+        <Button
+            android:id="@+id/add_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/eventadd"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:layout_weight="0.7"
+            android:textAllCaps="false"
+            />
+        <Button
+            android:id="@+id/add_release_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/releasegroupadd"
+            android:gravity="center"
+            android:layout_weight="0.3"
+            android:textAllCaps="false"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/add_label_recording"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_event_releasegroup"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/add_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/labeladd"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:layout_weight="0.6"
+            android:textAllCaps="false"
+            />
+        <Button
+            android:id="@+id/add_recording"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recordingadd"
+            android:gravity="center"
+            android:layout_weight="0.4"
+            android:textAllCaps="false"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            />
+
+    </LinearLayout>
+
+
+
 </RelativeLayout>

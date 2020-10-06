@@ -13,8 +13,8 @@ import org.metabrainz.mobile.data.sources.api.MusicBrainzServiceGenerator;
 import org.metabrainz.mobile.data.sources.api.entities.AccessToken;
 import org.metabrainz.mobile.data.sources.api.entities.userdata.UserInfo;
 import org.metabrainz.mobile.databinding.ActivityLoginBinding;
-import org.metabrainz.mobile.presentation.MusicBrainzActivity;
-import org.metabrainz.mobile.presentation.features.KotlinDashboard.KotlinDashboardActivity;
+import org.metabrainz.mobile.presentation.features.base.MusicBrainzActivity;
+import org.metabrainz.mobile.presentation.features.dashboard.DashboardActivity;
 import org.metabrainz.mobile.util.Log;
 
 import java.util.Objects;
@@ -37,9 +37,9 @@ public class LoginActivity extends MusicBrainzActivity {
         loginViewModel.getUserInfoLiveData().observe(this, this::saveUserInfo);
 
         if(LoginSharedPreferences.getLoginStatus() == LoginSharedPreferences.STATUS_LOGGED_IN){
-
-            startActivity(new Intent(this,LogoutActivity.class));
-            finish();
+            binding.loginPromptId.setText(R.string.logout_prompt);
+            binding.loginBtn.setText(R.string.logout);
+            binding.loginBtn.setOnClickListener(v -> logoutUser());
         }
         else
             binding.loginBtn.setOnClickListener(v -> startLogin());
@@ -61,7 +61,8 @@ public class LoginActivity extends MusicBrainzActivity {
     private void startLogin() {
             Intent intent = new Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse(MusicBrainzServiceGenerator.AUTH_URL
+                    Uri.parse(MusicBrainzServiceGenerator.AUTH_BASE_URL
+                            + "authorize"
                             + "?response_type=code"
                             + "&client_id=" + MusicBrainzServiceGenerator.CLIENT_ID
                             + "&redirect_uri=" + MusicBrainzServiceGenerator.OAUTH_REDIRECT_URI
@@ -89,10 +90,19 @@ public class LoginActivity extends MusicBrainzActivity {
             Toast.makeText(getApplicationContext(),
                     "Login successful. " + userInfo.getUsername() + " is now logged in.",
                     Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this, KotlinDashboardActivity.class));
+            startActivity(new Intent(this, DashboardActivity.class));
             Log.d(userInfo.getUsername());
             finish();
         }
+    }
+
+    private void logoutUser() {
+        LoginSharedPreferences.logoutUser();
+        Toast.makeText(getApplicationContext(),
+                "User has successfully logged out.",
+                Toast.LENGTH_LONG).show();
+        startActivity(new Intent(this, DashboardActivity.class));
+        finish();
     }
 
     @Override

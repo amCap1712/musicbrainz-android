@@ -15,14 +15,17 @@ import org.metabrainz.mobile.App;
 import org.metabrainz.mobile.data.sources.Constants;
 import org.metabrainz.mobile.data.sources.api.entities.mbentity.Release;
 import org.metabrainz.mobile.databinding.ActivityBarcodeResultBinding;
-import org.metabrainz.mobile.presentation.MusicBrainzActivity;
+import org.metabrainz.mobile.presentation.features.base.MusicBrainzActivity;
 import org.metabrainz.mobile.presentation.features.release.ReleaseActivity;
 import org.metabrainz.mobile.presentation.features.release_list.ReleaseListAdapter;
+import org.metabrainz.mobile.util.Resource;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
+
+import static org.metabrainz.mobile.util.Resource.Status.SUCCESS;
 
 @AndroidEntryPoint
 public class BarcodeResultActivity extends MusicBrainzActivity {
@@ -49,38 +52,38 @@ public class BarcodeResultActivity extends MusicBrainzActivity {
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setVisibility(View.GONE);
 
-        binding.noResult.setVisibility(View.GONE);
+        binding.noResult.getRoot().setVisibility(View.GONE);
 
         viewModel = new ViewModelProvider(this).get(BarcodeViewModel.class);
-        viewModel.getBarcodeLiveData().observe(this, this::handleResult);
-
         barcode = getIntent().getStringExtra("barcode");
+
         if (barcode != null && !barcode.isEmpty()) {
-            viewModel.fetchReleasesWithBarcode(barcode);
-            binding.progressSpinner.setVisibility(View.VISIBLE);
+            viewModel.fetchReleasesWithBarcode(barcode).observe(this, this::handleResult);
+            binding.progressSpinner.getRoot().setVisibility(View.VISIBLE);
         } else {
-            binding.progressSpinner.setVisibility(View.GONE);
+            binding.progressSpinner.getRoot().setVisibility(View.GONE);
             Toast.makeText(this, "Unknown barcode error", Toast.LENGTH_LONG).show();
             finish();
         }
 
     }
 
-    private void handleResult(List<Release> data) {
+    private void handleResult(Resource<List<Release>> resource) {
         releases.clear();
-        releases.addAll(data);
+        binding.progressSpinner.getRoot().setVisibility(View.GONE);
 
-        binding.progressSpinner.setVisibility(View.GONE);
-
-        if (releases.size() == 0)
-            binding.noResult.setVisibility(View.VISIBLE);
-        else if (releases.size() == 1) {
-            Intent intent = new Intent(this, ReleaseActivity.class);
-            intent.putExtra(Constants.MBID, releases.get(0).getMbid());
-            startActivity(intent);
-            finish();
-        } else
-            showMultipleReleases();
+        if (resource.getStatus() == SUCCESS) {
+            releases.addAll(resource.getData());
+            if (releases.size() == 0)
+                binding.noResult.getRoot().setVisibility(View.VISIBLE);
+            else if (releases.size() == 1) {
+                Intent intent = new Intent(this, ReleaseActivity.class);
+                intent.putExtra(Constants.MBID, releases.get(0).getMbid());
+                startActivity(intent);
+                finish();
+            } else
+                showMultipleReleases();
+        }
     }
 
     private void showMultipleReleases() {

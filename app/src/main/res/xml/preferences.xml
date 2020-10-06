@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/settings_search">
 
         <SwitchPreference
@@ -32,20 +30,12 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/settings_tagger">
-        <Preference
-            android:key="tagger_directory"
-            android:summary="@string/settings_tagger_directory_summary"
-            android:title="@string/settings_tagger_directory" />
-    </PreferenceCategory>
-
     <PreferenceCategory android:title="@string/settings_language">
         <SwitchPreference
             android:defaultValue="false"
             android:key="use_english"
             android:summary="@string/settings_use_language_summary"
             android:title="@string/settings_use_language" />
-
     </PreferenceCategory>
 
     <PreferenceCategory

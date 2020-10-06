@@ -47,8 +47,9 @@
 
     <!-- Pager tabs -->
     <string name="tab_links">MORE</string>
-    <string name="tab_releases">RELEASES</string>
-    <string name="tab_bio">BIO</string>
+    <string name="tab_releases">RELEASE</string>
+    <string name="tab_mediums">MEDIUMS</string>
+    <string name="tab_info">INFO</string>
     <string name="tab_edits">TAG &amp; RATE</string>
 
     <!-- DonateActivity -->
@@ -66,6 +67,8 @@
     <string name="action_authentication">Authentication</string>
     <string name="action_login">Log In</string>
     <string name="action_logout">Log Out</string>
+    <string name="loading">Loading...</string>
+    <string name="noresult">No Result Found</string>
 
     <!-- Preferences -->
     <string name="preferences_title">Settings</string>
@@ -99,8 +102,14 @@
     <string name="tags">Tags</string>
     <string name="user_tags">Your Tags</string>
     <string name="tagger_file_chooser_pickAfile">Pick a File</string>
-    <string name="tagger_file_chooser_SeeTags">Show Tags</string>
-    <string name="tagger_file_chooser_MascotDialogue">Pick Your Audio! I will do the cleanup for you</string>
+    <string name="tagger_file_chooser_SeeTags">Original Tags</string>
+    <string name="tagger_file_chooser_ShowCorrectags">New Tags</string>
+    <string name="tagger_file_chooser_pickDirectory">Choose Directory</string>
+    <string name="tagger_file_chooser_Instructions">Select An Audio File to Fix Tags</string>
+    <string name="tagger_file_save">Overwrite Tags</string>
+    <string name="instruction">Choose the directory where your audio files reside.\n\n
+        After the audio files are listed, click on the desired file from the list and overwrite the tags.\n\n
+        In case the list is empty, no audio file could be detected in the chosen directory. Try choosing another directory.</string>
 
     <string name="genres">Genres</string>
     <string name="user_genres">Your Genres</string>
@@ -139,15 +148,25 @@
     be prompted to login in MusicBrainz website. Follow the instructions and return to complete
     authentication.</string>
 
-<!--    Onboarding-->
-    <string name="Onboarding_landing_page">Welcome to MusicBrainz! \n Allow me to take you Through the basics!</string>
+    <!--    Onboarding-->
+    <string name="Onboarding_landing_page">Welcome to MusicBrainz!
+        Allow me to take you Through the basics!</string>
     <string name="lets_go">Lets Go!</string>
     <string name="skip">Skip</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="finish">Finish</string>
 
-<!--    onboarding adapter description-->
+<!--    add to database-->
+    <string name="instruction_to_add">Add if you can not find it</string>
+    <string name="artistadd">Add Artist</string>
+    <string name="releaseadd">Add Release</string>
+    <string name="eventadd">Add Event</string>
+    <string name="releasegroupadd">Add ReleaseGroup</string>
+    <string name="labeladd">Add Label</string>
+    <string name="recordingadd">Add Recording</string>
+
+    <!--    onboarding adapter description-->
     <string name="explain_fetch_metadata">Fix your Audio Metadata</string>
     <string name="explain_search_feature"> Explore MusicBrainz Data</string>
     <string name="explain_collection">Explore your Musicbrainz Collection</string>
@@ -165,4 +184,5 @@
         listens from Spotify are not submitted to ListenBrainz from this app. This is to avoid
         duplicate listens. If you have not linked Spotify to ListenBrainz, you can enable submitting
     listens from Spotify on this device to ListenBrainz through this option.</string>
+
 </resources>
